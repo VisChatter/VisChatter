@@ -1,6 +1,6 @@
 # Introduction
 
-This is a prototype called VisChatter for online collaboration on data visualization, available at (link). For simplicity, it only supports local network (two devices connected to the same network) right now. You can test it by open it in one browser tab, copy the sharing link, paste and open it in another browser tab.
+This is a prototype called VisChatter for online collaboration on data visualization, available at [this page](https://vischatter.github.io/VisChatter/). For simplicity, it only supports local network (two devices connected to the same network) right now. You can test it by open it in one browser tab, copy the sharing link, paste and open it in another browser tab.
 
 # Directories
 
