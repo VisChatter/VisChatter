@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vega-Lite Visualization</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+
+  <script>
+    // Your Vega-Lite specification
+    const spec = {
+      "data": {
+        "values": [
+          {"a": "A", "b": 28}, {"a": "B", "b": 55}, {"a": "C", "b": 43},
+          {"a": "D", "b": 91}, {"a": "E", "b": 81}, {"a": "F", "b": 53},
+          {"a": "G", "b": 19}, {"a": "H", "b": 87}, {"a": "I", "b": 52}
+        ]
+      },
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "a", "type": "ordinal"},
+        "y": {"field": "b", "type": "quantitative"}
+      }
+    };
+
+    // Render the Vega-Lite visualization
+    vegaEmbed('#vis', spec).then(result => {
+      console.log("Visualization rendered!");
+      
+      // Function to convert JSON object to Base64 string
+      function encodeToBase64(jsonObject) {
+        const jsonString = JSON.stringify(jsonObject);
+        return btoa(unescape(encodeURIComponent(jsonString)));
+      }
+
+      // Encode the Vega-Lite specification
+      const base64String = encodeToBase64(spec);
+      console.log("Base64 Encoded String:", base64String);
+    }).catch(console.error);
+  </script>
+</body>
+</html>

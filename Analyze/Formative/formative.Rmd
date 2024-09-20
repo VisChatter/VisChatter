@@ -1,0 +1,64 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(car)
+
+# Load the data
+data <- read.csv('formative_long.csv')
+
+# 1. Summary statistics for each 'mark' independently
+summary_stats_mark <- data %>%
+  group_by(mark) %>%
+  summarise(
+    mean_resp = mean(resp),
+    std_resp = sd(resp)
+  )
+
+# Print summary statistics for mark
+print("Summary statistics for each Mark:")
+print(summary_stats_mark)
+
+# 2. Summary statistics for each 'task' independently
+summary_stats_task <- data %>%
+  group_by(task) %>%
+  summarise(
+    mean_resp = mean(resp),
+    std_resp = sd(resp)
+  )
+
+# Print summary statistics for task
+print("Summary statistics for each Task:")
+print(summary_stats_task)
+
+# 3. Summary statistics for each 'vis_type' independently
+summary_stats_vis_type <- data %>%
+  group_by(vis_type) %>%
+  summarise(
+    mean_resp = mean(resp),
+    std_resp = sd(resp)
+  )
+
+# Print summary statistics for vis_type
+print("Summary statistics for each Vis Type:")
+print(summary_stats_vis_type)
+
+# Run ANOVA to test the effect of mark, task, and vis_type on response
+anova_model <- aov(resp ~ mark * task * vis_type, data = data)
+
+# Print ANOVA summary
+summary(anova_model)
+
+# Check for homogeneity of variances (Levene's Test)
+leveneTest(resp ~ mark * task * vis_type, data = data)
+
+```
+
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .chart-container {
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+        }
+
+        #Complex-Bar {
+            width: 680px;
+            /* height: 200px; */
+            /* border: 1px solid #000; */
+        }
+		#Simple-Bar {
+            width: 690px;
+            /* height: 200px; */
+            /* border: 1px solid #000; */
+        }
+		#Complex-Line {
+            width: 700px;
+            /* height: 200px; */
+            /* border: 1px solid #000; */
+        }
+		#Simple-Line{
+            width: 652px;
+            /* height: 200px; */
+            /* border: 1px solid #000; */
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .input-container {
+            margin-top: 10px;
+        }
+
+        .clear-button {
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+    <title>Image with Dots</title>
+</head>
+<body>
+    <div class="chart-container" id="chart1">
+        <img src="Chart Stimuli/Complex Bar.png" class="chart-image" id="Complex-Bar">
+        <div class="input-container">
+            <label for="x1-chart1">X1: </label>
+            <input type="number" id="x1-chart1">
+            <label for="y1-chart1">Y1: </label>
+            <input type="number" id="y1-chart1">
+            <br>
+            <label for="x2-chart1">X2: </label>
+            <input type="number" id="x2-chart1">
+            <label for="y2-chart1">Y2: </label>
+            <input type="number" id="y2-chart1">
+            <button onclick="addDots('chart1')">Add Dots</button>
+            <button class="clear-button" onclick="clearDots('chart1')">Clear Dots</button>
+        </div>
+    </div>
+
+    <div class="chart-container" id="chart2">
+        <img src="Chart Stimuli/Simple Bar.png" class="chart-image" id="Simple-Bar">
+        <div class="input-container">
+            <label for="x1-chart2">X1: </label>
+            <input type="number" id="x1-chart2">
+            <label for="y1-chart2">Y1: </label>
+            <input type="number" id="y1-chart2">
+            <br>
+            <label for="x2-chart2">X2: </label>
+            <input type="number" id="x2-chart2">
+            <label for="y2-chart2">Y2: </label>
+            <input type="number" id="y2-chart2">
+            <button onclick="addDots('chart2')">Add Dots</button>
+            <button class="clear-button" onclick="clearDots('chart2')">Clear Dots</button>
+        </div>
+    </div>
+
+    <div class="chart-container" id="chart3">
+        <img src="Chart Stimuli/Complex Line.png" class="chart-image" id="Complex-Line">
+        <div class="input-container">
+            <label for="x1-chart3">X1: </label>
+            <input type="number" id="x1-chart3">
+            <label for="y1-chart3">Y1: </label>
+            <input type="number" id="y1-chart3">
+            <br>
+            <label for="x2-chart3">X2: </label>
+            <input type="number" id="x2-chart3">
+            <label for="y2-chart3">Y2: </label>
+            <input type="number" id="y2-chart3">
+            <button onclick="addDots('chart3')">Add Dots</button>
+            <button class="clear-button" onclick="clearDots('chart3')">Clear Dots</button>
+        </div>
+    </div>
+
+    <div class="chart-container" id="chart4">
+        <img src="Chart Stimuli/Simple Line.png" class="chart-image" id="Simple-Line">
+        <div class="input-container">
+            <label for="x1-chart4">X1: </label>
+            <input type="number" id="x1-chart4">
+            <label for="y1-chart4">Y1: </label>
+            <input type="number" id="y1-chart4">
+            <br>
+            <label for="x2-chart4">X2: </label>
+            <input type="number" id="x2-chart4">
+            <label for="y2-chart4">Y2: </label>
+            <input type="number" id="y2-chart4">
+            <button onclick="addDots('chart4')">Add Dots</button>
+            <button class="clear-button" onclick="clearDots('chart4')">Clear Dots</button>
+        </div>
+    </div>
+
+    <script>
+        function addDots(chartId) {
+            const container = document.getElementById(chartId);
+            const x1 = parseInt(document.getElementById(`x1-${chartId}`).value);
+            const y1 = parseInt(document.getElementById(`y1-${chartId}`).value);
+            const x2 = parseInt(document.getElementById(`x2-${chartId}`).value);
+            const y2 = parseInt(document.getElementById(`y2-${chartId}`).value);
+
+            addDot(container, x1, y1);
+            addDot(container, x2, y2);
+        }
+
+        function addDot(container, x, y) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = `${x}px`;
+            dot.style.top = `${y}px`;
+            container.appendChild(dot);
+        }
+
+        function clearDots(chartId) {
+            const container = document.getElementById(chartId);
+            const dots = container.querySelectorAll('.dot');
+            dots.forEach(dot => dot.remove());
+        }
+    </script>
+</body>
+</html>
